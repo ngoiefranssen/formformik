@@ -1,5 +1,6 @@
 import { Box, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
+import * as yup from 'yup';
 import React from 'react'
 
 
@@ -37,14 +38,14 @@ const validate =(values) => {
   return errors
 }
 
-const validateSchema = () => {
-  name : Yup.name.string().required("Please complete the name")
-  lastname : Yup.lastname.string().required("Please complete the lastname")
-  email : Yup.email.string()
+const validateSchema = yup.object({
+  name : yup.name.string().required("Please complete the name"),
+  lastname : yup.lastname.string().required("Please complete the lastname"),
+  email : yup.email.string()
     .email("Invalid email format")
-    .required("Please complete the email")
-  mobile : Yup.mobile.string().required("Minimum 10 numbers required")
-}
+    .required("Please complete the email"),
+  mobile : yup.mobile.string().required("Minimum 10 numbers required"),
+})
 
 console.log('Form errors', formik?.errors)
 
@@ -52,7 +53,8 @@ const muiForm = () => {
     const formik = useFormik({
         initialValues,
         onSubmit,
-        validate,
+        validateSchema,
+        // validate,
     })
     return (
         <Box
