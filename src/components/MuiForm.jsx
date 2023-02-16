@@ -81,7 +81,7 @@ const muiForm = () => {
           id="email"
           name="email"
           type="email"
-          label="Email"
+          label="E-mail"
           multiline
           maxRows={4}
           value={formik.values.email}
