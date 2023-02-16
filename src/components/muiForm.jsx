@@ -1,3 +1,5 @@
+import { Box } from '@mui/material';
+import { useFormik } from 'formik';
 import React from 'react'
 
 
@@ -8,7 +10,7 @@ const initialValues = {
     mobile : "",
 };
 
-const submit = (values) => {
+const onSubmit = (values) => {
     console.log('Form data', values)
 }
 const validate =(values) => {
@@ -38,12 +40,18 @@ const validate =(values) => {
     return errors
 }
 const muiForm = () => {
-  return (
-    <div>
-        <form>
-            <></>
-        </form>
-    </div>
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validate,
+    })
+    return (
+        <Box
+        >
+            <form onSubmit={formik.handleSubmit}>
+                <></>
+            </form>
+        </Box>
   )
 }
 
