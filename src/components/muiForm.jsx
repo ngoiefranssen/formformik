@@ -16,7 +16,7 @@ const onSubmit = (values) => {
 const validate =(values) => {
     // values.name values.lastname values.email values.mobile
     // errors.name errors.lastname errors.email errors.mobile
-    // errors.name = "This field is required"
+    // errors.name = "This field is required" ...............
 
     var errors = {}
 
