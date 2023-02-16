@@ -1,4 +1,4 @@
-import { Box, Grid, TextField } from '@mui/material';
+import { Box, Button, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import React from 'react'
@@ -75,9 +75,10 @@ const muiForm = () => {
                 type="text"
                 multiline
                 maxRows={4}
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // value={formik.values.name}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                {...formik.getFieldProps('name')}
               />
               {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null}
             </Grid>
@@ -88,9 +89,10 @@ const muiForm = () => {
                 label="Lastname"
                 type="text"
                 multiline
-                value={formik.values.lastname}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // value={formik.values.lastname}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                {...formik.getFieldProps('lastname')}
               />
               {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null}
             </Grid>
@@ -104,9 +106,10 @@ const muiForm = () => {
                 label="E-mail"
                 multiline
                 maxRows={4}
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // value={formik.values.email}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                {...formik.getFieldProps('email')}
               />
               {formik?.touched.mobile && formik?.errors?.email ? <>{formik?.errors?.email}</> : null}
             </Grid>
@@ -118,14 +121,15 @@ const muiForm = () => {
                 label="Mobile"
                 placeholder="Placeholder"
                 multiline
-                value={formik.values.mobile}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                // value={formik.values.mobile}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                {...formik.getFieldProps('mobile')}
               />
               {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null}
             </Grid>
-           
           </div>
+          <Button variant='contained' type='submit'>Register</Button>
         </Box>
   )
 }
