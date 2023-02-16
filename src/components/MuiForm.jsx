@@ -1,4 +1,4 @@
-import { Box, TextField } from '@mui/material';
+import { Box, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react'
 
@@ -18,27 +18,36 @@ const validate =(values) => {
     // errors.name errors.lastname errors.email errors.mobile
     // errors.name = "This field is required" ...............
 
-    var errors = {}
+  var errors = {}
 
-    if(!values.name){
-        errors.name = "Required"
-    }
-    if(!values.lastname){
-        errors.lastname = "Required"
-    }
-    if(!values.email){
-        errors.email = "Required"
-    }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
-      errors.email = "Invalid email format"  
-    }
-    if(!values.mobile){
-        errors.mobile = "Required"
-    }else if(mobile.length >= 9){
-        errors.mobile = "Minimum 10 numbers required"
-    }
-
-    return errors
+  if(!values.name){
+    errors.name = "Please complete the name"
+  }
+  if(!values.lastname){
+    errors.lastname = "Please complete the lastname"
+  }
+  if(!values.email){
+    errors.email = "Please complete the email"
+  }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
+    errors.email = "Invalid email format"  
+  }
+  if(!values.mobile >= 9){
+    errors.mobile = "Minimum 10 numbers required"
+  }
+  return errors
 }
+
+const validateSchema = () => {
+  name : Yup.name.string().required("Please complete the name")
+  lastname : Yup.lastname.string().required("Please complete the lastname")
+  email : Yup.email.string()
+    .email("Invalid email format")
+    .required("Please complete the email")
+  mobile : Yup.mobile.string().required("Minimum 10 numbers required")
+}
+
+console.log('Form errors', formik?.errors)
+
 const muiForm = () => {
     const formik = useFormik({
         initialValues,
@@ -55,49 +64,66 @@ const muiForm = () => {
             noValidate
             autoComplete="off"
         >
-            <div>
-        <TextField
-          id="name"
-          name="name"
-          label="Name"
-          type="text"
-          multiline
-          maxRows={4}
-          value={formik.values.name}
-          onChange={formik.handleChange}
-        />
-        <TextField
-          id="lastname"
-          name="lastname"
-          label="Lastname"
-          type="text"
-          multiline
-          value={formik.values.lastname}
-          onChange={formik.handleChange}
-        />
-      </div>
-      <div>
-        <TextField
-          id="email"
-          name="email"
-          type="email"
-          label="E-mail"
-          multiline
-          maxRows={4}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-        />
-        <TextField
-          id="mobile"
-          name="mobile"
-          type="text"
-          label="Mobile"
-          placeholder="Placeholder"
-          multiline
-          value={formik.values.mobile}
-          onChange={formik.handleChange}
-        />
-      </div>
+          <div>
+            <Grid>
+              <TextField
+                id="name"
+                name="name"
+                label="Name"
+                type="text"
+                multiline
+                maxRows={4}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null}
+            </Grid>
+            <Grid>
+              <TextField
+                id="lastname"
+                name="lastname"
+                label="Lastname"
+                type="text"
+                multiline
+                value={formik.values.lastname}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null}
+            </Grid>
+          </div>
+          <div>
+            <Grid>
+              <TextField
+                id="email"
+                name="email"
+                type="email"
+                label="E-mail"
+                multiline
+                maxRows={4}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik?.touched.mobile && formik?.errors?.email ? <>{formik?.errors?.email}</> : null}
+            </Grid>
+            <Grid>
+              <TextField
+                id="mobile"
+                name="mobile"
+                type="text"
+                label="Mobile"
+                placeholder="Placeholder"
+                multiline
+                value={formik.values.mobile}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null}
+            </Grid>
+           
+          </div>
         </Box>
   )
 }
