@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react'
 
@@ -47,10 +47,57 @@ const muiForm = () => {
     })
     return (
         <Box
+            component="form"
+            onSubmit={formik.handleSubmit}
+            sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
         >
-            <form onSubmit={formik.handleSubmit}>
-                <></>
-            </form>
+            <div>
+        <TextField
+          id="name"
+          name="name"
+          label="Name"
+          type="text"
+          multiline
+          maxRows={4}
+          value={formik.values.name}
+          onChange={formik.handleChange}
+        />
+        <TextField
+          id="lastname"
+          name="lastname"
+          label="Lastname"
+          type="text"
+          multiline
+          value={formik.values.lastname}
+          onChange={formik.handleChange}
+        />
+      </div>
+      <div>
+        <TextField
+          id="email"
+          name="email"
+          type="email"
+          label="Email"
+          multiline
+          maxRows={4}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+        />
+        <TextField
+          id="mobile"
+          name="mobile"
+          type="text"
+          label="Mobile"
+          placeholder="Placeholder"
+          multiline
+          value={formik.values.mobile}
+          onChange={formik.handleChange}
+        />
+      </div>
         </Box>
   )
 }
