@@ -9,6 +9,7 @@ const initialValues = {
     lastname : "",
     email : "",
     mobile : "",
+    comments: "",
 };
 
 const onSubmit = (values) => {
@@ -134,6 +135,22 @@ const muiForm = () => {
               />
               {/* {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null} */}
               <ErrorMessage name='mobile' />
+            </Grid>
+          </div>
+          <div>
+            <Grid>
+              <Field as="textarea"
+                id="mobile"
+                name="mobile"
+                type="text"
+                label="Mobile"
+                placeholder="Placeholder"
+                multiline
+                // value={formik.values.mobile}
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                // {...formik.getFieldProps('mobile')}
+              />
             </Grid>
           </div>
           <Button variant='contained' type='submit'>Register</Button>
