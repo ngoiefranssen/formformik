@@ -9,6 +9,7 @@ const initialValues = {
     lastname : "",
     email : "",
     mobile : "",
+    address : "",
     comments: "",
 };
 
@@ -138,6 +139,7 @@ const muiForm = () => {
           </div>
           <div>
             <Grid>
+              {/* as="textarea" or component="textarea" */}
               <Field as="textarea"
                 id="comments"
                 name="comments"
@@ -149,6 +151,22 @@ const muiForm = () => {
                 // onBlur={formik.handleBlur}
                 // {...formik.getFieldProps('mobile')}
               />
+            </Grid>
+            <Grid>
+              <Field id="address" name="address">
+                {
+                  (props) => {
+                    const {field, form, meta} = props
+                    console.log('Render props', props)
+                    return(
+                      <>
+                        <TextField id="address" {...field}/>
+                        { meta.touched && meta.error ? <>{meta.error}</> : null }
+                      </>
+                    )
+                  }
+                }
+              </Field>
             </Grid>
           </div>
           <Button variant='contained' type='submit'>Register</Button>
