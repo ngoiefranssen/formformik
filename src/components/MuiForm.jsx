@@ -1,5 +1,5 @@
-import { Box, Button, Grid, TextField } from '@mui/material';
-import { useFormik } from 'formik';
+import { Button, Grid, TextField } from '@mui/material';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import React from 'react'
 
@@ -50,25 +50,28 @@ const validateSchema = yup.object({
 console.log('Form errors', formik?.errors)
 
 const muiForm = () => {
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validateSchema,
-        // validate,
-    })
+    
+  // const formik = useFormik({
+    //     initialValues,
+    //     onSubmit,
+    //     validateSchema,
+    //     // validate,
+    // })
     return (
-        <Box
-            component="form"
-            onSubmit={formik.handleSubmit}
-            sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
+      <Formik 
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validateSchema={validateSchema}
+      >
+        <Form
+            // onSubmit={formik.handleSubmit}
+            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
+            // noValidate
             autoComplete="off"
         >
           <div>
             <Grid>
-              <TextField
+              <Field
                 id="name"
                 name="name"
                 label="Name"
@@ -78,12 +81,13 @@ const muiForm = () => {
                 // value={formik.values.name}
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                {...formik.getFieldProps('name')}
+                // {...formik.getFieldProps('name')}
               />
-              {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null}
+              {/* {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null} */}
+              <ErrorMessage name='name' />
             </Grid>
             <Grid>
-              <TextField
+              <Field
                 id="lastname"
                 name="lastname"
                 label="Lastname"
@@ -92,14 +96,15 @@ const muiForm = () => {
                 // value={formik.values.lastname}
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                {...formik.getFieldProps('lastname')}
+                // {...formik.getFieldProps('lastname')}
               />
-              {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null}
+              {/* {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null} */}
+              <ErrorMessage name='lastname' />
             </Grid>
           </div>
           <div>
             <Grid>
-              <TextField
+              <Field
                 id="email"
                 name="email"
                 type="email"
@@ -109,12 +114,13 @@ const muiForm = () => {
                 // value={formik.values.email}
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                {...formik.getFieldProps('email')}
+                // {...formik.getFieldProps('email')}
               />
-              {formik?.touched.mobile && formik?.errors?.email ? <>{formik?.errors?.email}</> : null}
+              {/* {formik?.touched.mobile && formik?.errors?.email ? <>{formik?.errors?.email}</> : null} */}
+              <ErrorMessage name='email' />
             </Grid>
             <Grid>
-              <TextField
+              <Field
                 id="mobile"
                 name="mobile"
                 type="text"
@@ -124,13 +130,16 @@ const muiForm = () => {
                 // value={formik.values.mobile}
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                {...formik.getFieldProps('mobile')}
+                // {...formik.getFieldProps('mobile')}sss
               />
-              {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null}
+              {/* {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null} */}
+              <ErrorMessage name='mobile' />
             </Grid>
           </div>
           <Button variant='contained' type='submit'>Register</Button>
-        </Box>
+        </Form>
+      </Formik>
+        
   )
 }
 
