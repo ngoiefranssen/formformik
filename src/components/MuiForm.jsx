@@ -2,6 +2,7 @@ import { Button, Grid, TextField } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import React from 'react'
+import TextError from './TextError';
 
 
 const initialValues = {
@@ -86,7 +87,7 @@ const muiForm = () => {
                 // {...formik.getFieldProps('name')}
               />
               {/* {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null} */}
-              <ErrorMessage name='name' component='div' />
+              <ErrorMessage name='name' component={TextError} />
             </Grid>
             <Grid>
               <Field

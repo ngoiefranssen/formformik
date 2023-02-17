@@ -2,7 +2,7 @@ import React from 'react'
 
 const TextError = (props) => {
   return (
-    <div style={}>{props.children}</div>
+    <div style='color:red'>{props.children}</div>
   )
 }
 
