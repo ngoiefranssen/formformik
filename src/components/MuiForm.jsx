@@ -140,11 +140,10 @@ const muiForm = () => {
           <div>
             <Grid>
               <Field as="textarea"
-                id="mobile"
-                name="mobile"
+                id="comments"
+                name="comments"
                 type="text"
-                label="Mobile"
-                placeholder="Placeholder"
+                label="Comments"
                 multiline
                 // value={formik.values.mobile}
                 // onChange={formik.handleChange}
