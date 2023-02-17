@@ -126,7 +126,6 @@ const muiForm = () => {
                 name="mobile"
                 type="text"
                 label="Mobile"
-                placeholder="Placeholder"
                 multiline
                 // value={formik.values.mobile}
                 // onChange={formik.handleChange}
