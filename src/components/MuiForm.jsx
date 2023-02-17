@@ -86,7 +86,7 @@ const muiForm = () => {
                 // {...formik.getFieldProps('name')}
               />
               {/* {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null} */}
-              <ErrorMessage name='name' />
+              <ErrorMessage name='name' component='div' />
             </Grid>
             <Grid>
               <Field
