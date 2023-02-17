@@ -160,7 +160,7 @@ const muiForm = () => {
                     console.log('Render props', props)
                     return(
                       <>
-                        <TextField id="address" {...field}/>
+                        <TextField name='address' id="address" {...field}/>
                         { meta.touched && meta.error ? <>{meta.error}</> : null }
                       </>
                     )
