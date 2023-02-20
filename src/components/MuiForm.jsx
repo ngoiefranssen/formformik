@@ -1,8 +1,9 @@
 import { Button, Grid, TextField } from '@mui/material';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as yup from 'yup';
 import React from 'react'
 import TextError from './TextError';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 
 const initialValues = {
@@ -15,7 +16,8 @@ const initialValues = {
     social:{
       whatsapp: "",
       twitter : "",
-    }
+    },
+    phoneNbers : [""]
 };
 
 const onSubmit = (values) => {
@@ -54,7 +56,14 @@ const validateSchema = yup.object({
   mobile : yup.mobile.string().required("Minimum 10 numbers required"),
 })
 
-console.log('Form errors', formik?.errors)
+// console.log('Form errors', formik?.errors)
+
+const validateComments = (value) => {
+  let error
+  if(!error)
+    error = "Required"
+  return error
+}
 
 const muiForm = () => {
     
@@ -69,6 +78,8 @@ const muiForm = () => {
         initialValues={initialValues}
         onSubmit={onSubmit}
         validateSchema={validateSchema}
+        // validateOnChange={false}
+        // validateOnBlur={false}
       >
         <Form
             // onSubmit={formik.handleSubmit}
@@ -164,7 +175,9 @@ const muiForm = () => {
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
                 // {...formik.getFieldProps('mobile')}
+                validate={validateComments}
               />
+              <ErrorMessage name="comments" component={TextError} />
             </Grid>
             <Grid>
               <Field id="address" name="address">
@@ -184,11 +197,54 @@ const muiForm = () => {
             </Grid>
             <Grid>
               <Field
-                label="Twitter"
-                
+                label="Whatsapp profile"
+                id="whatsapp"
+                name="social.whatsapp"
+                type="e"
               />
-            </Grid>
-
+              <Field
+                label="Twitter profile"
+                id="twitter"
+                name="social.twitter"
+                type="e"
+              />
+              <FieldArray name="phoneNbers">
+                {
+                  fieldArrayProps => {
+                    console.log("fieldArrayProps", fieldArrayProps)
+                    const { push, remove, form } = fieldArrayProps
+                    const { values } = form
+                    const { phoneNbers} = values
+                    return(
+                      <Grid>
+                        {
+                          phoneNbers.map((phoneNumber, index) => (
+                            <Grid2 key={index}>
+                              <Field name={`phoneNbers[${index}]`} />
+                              {
+                                index > 0 && (
+                                  <Button type="button" onClick={() => remove(index)}>
+                                    {' '}
+                                    -
+                                    {' '}
+                                  </Button>
+                                )
+                              }
+                             
+                              <Button type="button" onClick={() => push("")}> 
+                                {' '}
+                                +
+                                {' '} 
+                              </Button>
+                            </Grid2>
+                          ))
+                        }
+                      </Grid>
+                    )
+                  }
+                }
+              </FieldArray>
+            </Grid>            
           </div>
           <Button variant='contained' type='submit'>Register</Button>
         </Form>
