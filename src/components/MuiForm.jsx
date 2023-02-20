@@ -100,7 +100,13 @@ const muiForm = () => {
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
                 // {...formik.getFieldProps('lastname')}
-              />
+              >
+                {
+                  (errorMesg) => {
+                    <div style="color:red">{errorMesg}</div>
+                  }
+                }
+              </Field>
               {/* {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null} */}
               <ErrorMessage name='lastname' />
             </Grid>
