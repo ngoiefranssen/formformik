@@ -12,6 +12,10 @@ const initialValues = {
     mobile : "",
     address : "",
     comments: "",
+    social:{
+      whatsapp: "",
+      twitter : "",
+    }
 };
 
 const onSubmit = (values) => {
@@ -101,11 +105,14 @@ const muiForm = () => {
                 // onBlur={formik.handleBlur}
                 // {...formik.getFieldProps('lastname')}
               >
-                {
-                  (errorMesg) => {
-                    <div style="color:red">{errorMesg}</div>
+                <ErrorMessage name='email'>
+                  {
+                    (errorMesg) => {
+                      <div style="color:red">{errorMesg}</div>
+                    }
                   }
-                }
+                </ErrorMessage>
+                
               </Field>
               {/* {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null} */}
               <ErrorMessage name='lastname' />
@@ -175,6 +182,13 @@ const muiForm = () => {
                 }
               </Field>
             </Grid>
+            <Grid>
+              <Field
+                label="Twitter"
+                
+              />
+            </Grid>
+
           </div>
           <Button variant='contained' type='submit'>Register</Button>
         </Form>
