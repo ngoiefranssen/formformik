@@ -94,25 +94,16 @@ const muiForm = () => {
               name="name"
               label="Name"
               type="text"
-              multiline
               maxRows={4}
-              // value={formik.values.name}
-              // onChange={formik.handleChange}
-              // onBlur={formik.handleBlur}
-              // {...formik.getFieldProps('name')}
-            />
-              {/* {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null} */}
-            <ErrorMessage name='name' component={TextError} />
+            >
+              <ErrorMessage name='name' component={TextError} />
+            </Field>
             <Field
               id="lastname"
               name="lastname"
               label="Lastname"
               type="text"
-              multiline
-              // value={formik.values.lastname}
-              // onChange={formik.handleChange}
-              // onBlur={formik.handleBlur}
-              // {...formik.getFieldProps('lastname')}
+              maxRows={4}
             >
             <ErrorMessage name='email'>
               {
@@ -120,9 +111,8 @@ const muiForm = () => {
                   <div style="color:red">{errorMesg}</div>
                 }
               }
-                </ErrorMessage>
-                
-              </Field>
+              </ErrorMessage>  
+            </Field>
               {/* {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null} */}
               <ErrorMessage name='lastname' />
             </Grid>
