@@ -220,27 +220,31 @@ const muiForm = () => {
                   </FieldArray>
                   </Grid>            
                   <Button
-                    type='submit'
+                    type='button'
+                    variant='contained'
                     onClick={ () => formik.validateField('comments')}
                   >
                     Validete comments
                   </Button>
                   <Button
-                    type='submit'
+                    // variant='contained'
+                    type='button'
                     onClick={ () => formik.validateForm()}
                   >
                     Validete all
                   </Button>
                   <Button
-                    type='submit'
+                    variant='contained'
+                    // color=''
+                    type='button'
                     onClick={ () => formik.setFieldTouched('comments')}
                   >
                     Visit comments
                   </Button>
                   <Button
-                    variant='contained'
-                    color='success'
-                    type='submit'
+                    // variant='outlined'
+                    // color=''
+                    type='button'
                     onClick={ () => formik.setTouched()}
                   >
                     Visit fields
