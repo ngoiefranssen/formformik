@@ -74,53 +74,52 @@ const muiForm = () => {
     //     // validate,
     // })
     return (
-      <Formik 
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validateSchema={validateSchema}
-        // validateOnChange={false}
-        // validateOnBlur={false}
-      >
-        <Form
-            // onSubmit={formik.handleSubmit}
-            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
-            // noValidate
-            autoComplete="off"
+      <Box>
+        <Formik 
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validateSchema={validateSchema}
+          // validateOnChange={false}
+          // validateOnBlur={false}
         >
-            <Grid>
-              <Field
-                id="name"
-                name="name"
-                label="Name"
-                type="text"
-                multiline
-                maxRows={4}
-                // value={formik.values.name}
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // {...formik.getFieldProps('name')}
-              />
+        <Form
+          // onSubmit={formik.handleSubmit}
+          sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
+          // noValidate
+          autoComplete="off"
+        >
+          <Grid>
+            <Field
+              id="name"
+              name="name"
+              label="Name"
+              type="text"
+              multiline
+              maxRows={4}
+              // value={formik.values.name}
+              // onChange={formik.handleChange}
+              // onBlur={formik.handleBlur}
+              // {...formik.getFieldProps('name')}
+            />
               {/* {formik?.touched.mobile && formik?.errors?.name ? <>{formik.errors.name}</> : null} */}
-              <ErrorMessage name='name' component={TextError} />
-            </Grid>
-            <Grid>
-              <Field
-                id="lastname"
-                name="lastname"
-                label="Lastname"
-                type="text"
-                multiline
-                // value={formik.values.lastname}
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // {...formik.getFieldProps('lastname')}
-              >
-                <ErrorMessage name='email'>
-                  {
-                    (errorMesg) => {
-                      <div style="color:red">{errorMesg}</div>
-                    }
-                  }
+            <ErrorMessage name='name' component={TextError} />
+            <Field
+              id="lastname"
+              name="lastname"
+              label="Lastname"
+              type="text"
+              multiline
+              // value={formik.values.lastname}
+              // onChange={formik.handleChange}
+              // onBlur={formik.handleBlur}
+              // {...formik.getFieldProps('lastname')}
+            >
+            <ErrorMessage name='email'>
+              {
+                (errorMesg) => {
+                  <div style="color:red">{errorMesg}</div>
+                }
+              }
                 </ErrorMessage>
                 
               </Field>
@@ -243,6 +242,8 @@ const muiForm = () => {
           <Button variant='contained' type='submit'>Register</Button>
         </Form>
       </Formik>
+      </Box>
+      
         
   )
 }
