@@ -67,7 +67,7 @@ const validateSchema = object({
 
 const validateComments = (value) => {
   let error
-  if(!error)
+  if(!value)
     error = "Required"
   return error
 }
@@ -87,138 +87,146 @@ const muiForm = () => {
           onSubmit={onSubmit}
           validateSchema={validateSchema}
         >
-        <Form
-          sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
-          // noValidate
-          autoComplete="off"
-          // sx={{  }}
-        >
-          <Grid>
-            <Field
-              id="name"
-              name="name"
-              label="Name"
-              type="text"
-            />
-            <ErrorMessage name='name' component={TextError} />
-          </Grid>
-          <Grid>
-             <Field
-              id="lastname"
-              name="lastname"
-              label="Lastname"
-              type="text"
-              maxRows={4}
-            />
-            <ErrorMessage name='email'>
-              {
-                (errorMesg) => {
-                  <div style="color:red">{errorMesg}</div>
-                }
-              }
-              </ErrorMessage>
-            <ErrorMessage name='lastname' />
-          </Grid>
-          <Grid>
-            <Field
-              id="email"
-              name="email"
-              type="email"
-              label="E-mail"
-              maxRows={4}
-            />
-            <ErrorMessage name='email' />
-          </Grid>
-          <Grid>
-            <Field
-              id="mobile"
-              name="mobile"
-              type="text"
-              label="Mobile"
-            />
-              <ErrorMessage name='mobile' />
-            </Grid>
-            <Grid>
-              {/* as="textarea" or component="textarea" */}
-              <Field as="textarea"
-                id="comments"
-                name="comments"
-                type="text"
-                label="Comments"
-                validate={validateComments}
-              />
-              <ErrorMessage name="comments" component={TextError} />
-            </Grid>
-            <Grid>
-              <FastField id="address" name="address" label="address">
-                {
-                  (props) => {
-                    const {field, form, meta} = props
-                    console.log('Render props', props)
-                    return(
-                      <>
-                        <TextField name='address' id="address" {...field}/>
-                        { meta.touched && meta.error ? <div>{meta.error}</div> : null }
-                      </>
-                    )
-                  }
-                }
-              </FastField>
-            </Grid>
-            <Grid>
-              <Field
-                label="Whatsapp profile"
-                id="whatsapp"
-                name="social.whatsapp"
-                type="text"
-              />
-              <Field
-                label="Twitter profile"
-                id="twitter"
-                name="social.twitter"
-                type="text"
-              />
-              </Grid>
-              <Grid>
-              <FieldArray name="phoneNbers">
-                {
-                  fieldArrayProps => {
-                    // console.log("fieldArrayProps", fieldArrayProps)
-                    const { push, remove, form } = fieldArrayProps
-                    const { values } = form
-                    const { phoneNbers} = values
-                    return(
-                      <Grid>
-                        {
-                          phoneNbers.map((phoneNumber, index) => (
-                            <Grid2 key={index}>
-                              <Field name={`phoneNbers[${index}]`} />
-                              {
-                                index > 0 && (
-                                  <Button type="button" onClick={() => remove(index)}>
-                                    {' '}
-                                    -
-                                    {' '}
-                                  </Button>
-                                )
-                              }
-                             
-                              <Button type="button" onClick={() => push("")}> 
-                                {' '}
-                                +
-                                {' '} 
-                              </Button>
-                            </Grid2>
-                          ))
+          {
+            formik => {
+              return(
+                <Form
+                  sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
+                  // noValidate
+                  autoComplete="off"
+                  // sx={{  }}
+                >
+                  <Grid>
+                    <Field
+                      id="name"
+                      name="name"
+                      label="Name"
+                      type="text"
+                    />
+                    <ErrorMessage name='name' component={TextError} />
+                  </Grid>
+                  <Grid>
+                    <Field
+                      id="lastname"
+                      name="lastname"
+                      label="Lastname"
+                      type="text"
+                      maxRows={4}
+                    />
+                    <ErrorMessage name='email'>
+                      {
+                        (errorMesg) => {
+                          <div style="color:red">{errorMesg}</div>
                         }
-                      </Grid>
-                    )
-                  }
-                }
-              </FieldArray>
-            </Grid>            
-          <Button variant='contained' type='submit' padding="30px">Register</Button>
-        </Form>
+                      }
+                      </ErrorMessage>
+                    <ErrorMessage name='lastname' />
+                  </Grid>
+                  <Grid>
+                    <Field
+                      id="email"
+                      name="email"
+                      type="email"
+                      label="E-mail"
+                      maxRows={4}
+                    />
+                    <ErrorMessage name='email' />
+                  </Grid>
+                  <Grid>
+                    <Field
+                      id="mobile"
+                      name="mobile"
+                      type="text"
+                      label="Mobile"
+                    />
+                      <ErrorMessage name='mobile' />
+                  </Grid>
+                  <Grid>
+                    {/* as="textarea" or component="textarea" */}
+                    <Field as="textarea"
+                      id="comments"
+                      name="comments"
+                      type="text"
+                      label="Comments"
+                      validate={validateComments}
+                    />
+                    <ErrorMessage name="comments" component={TextError} />
+                  </Grid>
+                  <Grid>
+                    <FastField id="address" name="address" label="address">
+                      {
+                        (props) => {
+                          const {field, form, meta} = props
+                          console.log('Render props', props)
+                          return(
+                            <>
+                              <TextField name='address' id="address" {...field}/>
+                              { meta.touched && meta.error ? <div>{meta.error}</div> : null }
+                            </>
+                          )
+                        }
+                      }
+                    </FastField>
+                  </Grid>
+                  <Grid>
+                    <Field
+                      label="Whatsapp profile"
+                      id="whatsapp"
+                      name="social.whatsapp"
+                      type="text"
+                    />
+                    <Field
+                      label="Twitter profile"
+                      id="twitter"
+                      name="social.twitter"
+                      type="text"
+                    />
+                  </Grid>
+                  <Grid>
+                  <FieldArray name="phoneNbers">
+                    {
+                      fieldArrayProps => {
+                        // console.log("fieldArrayProps", fieldArrayProps)
+                        const { push, remove, form } = fieldArrayProps
+                        const { values } = form
+                        const { phoneNbers} = values
+                        console.log('Form error', form.errors)
+                        return(
+                          <Grid>
+                            {
+                              phoneNbers.map((phoneNumber, index) => (
+                                <Grid2 key={index}>
+                                  <Field name={`phoneNbers[${index}]`} />
+                                  {
+                                    index > 0 && (
+                                      <Button type="button" onClick={() => remove(index)}>
+                                        {' '}
+                                        -
+                                        {' '}
+                                      </Button>
+                                    )
+                                  }
+                                
+                                  <Button type="button" onClick={() => push("")}> 
+                                    {' '}
+                                    +
+                                    {' '} 
+                                  </Button>
+                                </Grid2>
+                              ))
+                            }
+                          </Grid>
+                        )
+                      }
+                    }
+                  </FieldArray>
+                  </Grid>            
+                  <Button variant='contained' type='submit' padding="30px">Register</Button>
+                </Form>
+              )
+            }
+          }
+       
         </Formik>
       </Paper>   
   )
