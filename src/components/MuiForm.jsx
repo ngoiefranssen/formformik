@@ -258,7 +258,8 @@ const muiForm = () => {
                   <Button
                     variant='contained'
                     disabled={formik.isSubmitting}
-                    type='submit'>
+                    type='submit'
+                  >
                       Register
                   </Button>
                 </Form>
