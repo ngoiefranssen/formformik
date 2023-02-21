@@ -89,6 +89,7 @@ const muiForm = () => {
         >
           {
             formik => {
+              console.log('Form props', formik)
               return(
                 <Form
                   sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
