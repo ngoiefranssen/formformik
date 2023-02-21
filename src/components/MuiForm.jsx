@@ -81,7 +81,7 @@ const muiForm = () => {
     //     // validate,
     // })
     return (
-      <Paper sx={{ height: "50%" ,width:"50%", margin:"50px auto 0px" }}>
+      <Paper sx={{ width:"50%", margin:"50px auto 0px auto" }}>
         <Formik 
           initialValues={initialValues}
           onSubmit={onSubmit}
@@ -170,13 +170,13 @@ const muiForm = () => {
                 label="Whatsapp profile"
                 id="whatsapp"
                 name="social.whatsapp"
-                type="e"
+                type="text"
               />
               <Field
                 label="Twitter profile"
                 id="twitter"
                 name="social.twitter"
-                type="e"
+                type="text"
               />
               </Grid>
               <Grid>
@@ -220,10 +220,7 @@ const muiForm = () => {
           <Button variant='contained' type='submit' padding="30px">Register</Button>
         </Form>
         </Formik>
-      </Paper>
-       
-      
-        
+      </Paper>   
   )
 }
 
