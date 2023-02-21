@@ -255,7 +255,12 @@ const muiForm = () => {
                   >
                     Visit fields
                   </Button>
-                  <Button variant='contained' type='submit'>Register</Button>
+                  <Button
+                    variant='contained'
+                    disabled={!(formik.dirty && formik.isValid)}
+                    type='submit'>
+                      Register
+                  </Button>
                 </Form>
               )
             }
