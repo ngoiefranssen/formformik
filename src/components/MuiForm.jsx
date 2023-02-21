@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField } from '@mui/material';
+import { Box, Button, Grid, Paper, TextField } from '@mui/material';
 import {
   Formik,
   Form,
@@ -81,19 +81,17 @@ const muiForm = () => {
     //     // validate,
     // })
     return (
-      <Box>
+      <Paper sx={{ height: "50%" ,width:"50%", margin:"50px auto 0px" }}>
         <Formik 
           initialValues={initialValues}
           onSubmit={onSubmit}
           validateSchema={validateSchema}
-          // validateOnChange={false}
-          // validateOnBlur={false}
         >
         <Form
-          // onSubmit={formik.handleSubmit}
           sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
           // noValidate
           autoComplete="off"
+          // sx={{  }}
         >
           <Grid>
             <Field
@@ -101,9 +99,8 @@ const muiForm = () => {
               name="name"
               label="Name"
               type="text"
-              maxRows={4}
             />
-              <ErrorMessage name='name' component={TextError} />
+            <ErrorMessage name='name' component={TextError} />
           </Grid>
           <Grid>
              <Field
@@ -161,7 +158,7 @@ const muiForm = () => {
                     return(
                       <>
                         <TextField name='address' id="address" {...field}/>
-                        { meta.touched && meta.error ? <>{meta.error}</> : null }
+                        { meta.touched && meta.error ? <div>{meta.error}</div> : null }
                       </>
                     )
                   }
@@ -220,10 +217,11 @@ const muiForm = () => {
                 }
               </FieldArray>
             </Grid>            
-          <Button variant='contained' type='submit'>Register</Button>
+          <Button variant='contained' type='submit' padding="30px">Register</Button>
         </Form>
-      </Formik>
-      </Box>
+        </Formik>
+      </Paper>
+       
       
         
   )
