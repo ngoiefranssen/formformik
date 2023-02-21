@@ -1,6 +1,6 @@
 import { Button, Grid, TextField } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import React from 'react'
 import TextError from './TextError';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
@@ -47,13 +47,13 @@ const validate =(values) => {
   return errors
 }
 
-const validateSchema = yup.object({
-  name : yup.name.string().required("Please complete the name"),
-  lastname : yup.lastname.string().required("Please complete the lastname"),
-  email : yup.email.string()
+const validateSchema = object({
+  name : string().required("Please complete the name"),
+  lastname : string().required("Please complete the lastname"),
+  email : string()
     .email("Invalid email format")
     .required("Please complete the email"),
-  mobile : yup.mobile.string().required("Minimum 10 numbers required"),
+  mobile : string().required("Minimum 10 numbers required"),
 })
 
 // console.log('Form errors', formik?.errors)
@@ -87,7 +87,6 @@ const muiForm = () => {
             // noValidate
             autoComplete="off"
         >
-          <div>
             <Grid>
               <Field
                 id="name"
@@ -128,8 +127,6 @@ const muiForm = () => {
               {/* {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null} */}
               <ErrorMessage name='lastname' />
             </Grid>
-          </div>
-          <div>
             <Grid>
               <Field
                 id="email"
@@ -161,8 +158,6 @@ const muiForm = () => {
               {/* {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null} */}
               <ErrorMessage name='mobile' />
             </Grid>
-          </div>
-          <div>
             <Grid>
               {/* as="textarea" or component="textarea" */}
               <Field as="textarea"
@@ -245,7 +240,6 @@ const muiForm = () => {
                 }
               </FieldArray>
             </Grid>            
-          </div>
           <Button variant='contained' type='submit'>Register</Button>
         </Form>
       </Formik>
