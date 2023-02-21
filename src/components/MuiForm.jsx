@@ -245,7 +245,12 @@ const muiForm = () => {
                     // variant='outlined'
                     // color=''
                     type='button'
-                    onClick={ () => formik.setTouched()}
+                    onClick={ () => formik.setTouched({
+                      name : true,
+                      lastname : true,
+                      email : true,
+                      comments : true,
+                    })}
                   >
                     Visit fields
                   </Button>
