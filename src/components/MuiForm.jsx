@@ -98,7 +98,9 @@ const muiForm = () => {
             >
               <ErrorMessage name='name' component={TextError} />
             </Field>
-            <Field
+          </Grid>
+          <Grid>
+             <Field
               id="lastname"
               name="lastname"
               label="Lastname"
@@ -113,38 +115,25 @@ const muiForm = () => {
               }
               </ErrorMessage>  
             </Field>
-              {/* {formik?.touched.mobile && formik?.errors?.lastname ? <>{formik?.errors?.lastname}</> : null} */}
-              <ErrorMessage name='lastname' />
-            </Grid>
-            <Grid>
-              <Field
-                id="email"
-                name="email"
-                type="email"
-                label="E-mail"
-                multiline
-                maxRows={4}
-                // value={formik.values.email}
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // {...formik.getFieldProps('email')}
-              />
-              {/* {formik?.touched.mobile && formik?.errors?.email ? <>{formik?.errors?.email}</> : null} */}
-              <ErrorMessage name='email' />
-            </Grid>
-            <Grid>
-              <Field
-                id="mobile"
-                name="mobile"
-                type="text"
-                label="Mobile"
-                multiline
-                // value={formik.values.mobile}
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // {...formik.getFieldProps('mobile')}sss
-              />
-              {/* {formik?.touched.mobile && formik?.errors?.mobile ? <>{formik?.errors?.mobile}</> : null} */}
+            <ErrorMessage name='lastname' />
+          </Grid>
+          <Grid>
+            <Field
+              id="email"
+              name="email"
+              type="email"
+              label="E-mail"
+              maxRows={4}
+            />
+            <ErrorMessage name='email' />
+          </Grid>
+          <Grid>
+            <Field
+              id="mobile"
+              name="mobile"
+              type="text"
+              label="Mobile"
+            />
               <ErrorMessage name='mobile' />
             </Grid>
             <Grid>
@@ -154,11 +143,6 @@ const muiForm = () => {
                 name="comments"
                 type="text"
                 label="Comments"
-                multiline
-                // value={formik.values.mobile}
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // {...formik.getFieldProps('mobile')}
                 validate={validateComments}
               />
               <ErrorMessage name="comments" component={TextError} />
@@ -192,6 +176,8 @@ const muiForm = () => {
                 name="social.twitter"
                 type="e"
               />
+              </Grid>
+              <Grid>
               <FieldArray name="phoneNbers">
                 {
                   fieldArrayProps => {
