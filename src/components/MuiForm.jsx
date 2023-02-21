@@ -1,5 +1,12 @@
 import { Box, Button, Grid, TextField } from '@mui/material';
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  FieldArray,
+  FastField
+} from 'formik';
 import { object, string } from 'yup';
 import React from 'react'
 import TextError from './TextError';
@@ -95,9 +102,8 @@ const muiForm = () => {
               label="Name"
               type="text"
               maxRows={4}
-            >
+            />
               <ErrorMessage name='name' component={TextError} />
-            </Field>
           </Grid>
           <Grid>
              <Field
@@ -106,15 +112,14 @@ const muiForm = () => {
               label="Lastname"
               type="text"
               maxRows={4}
-            >
+            />
             <ErrorMessage name='email'>
               {
                 (errorMesg) => {
                   <div style="color:red">{errorMesg}</div>
                 }
               }
-              </ErrorMessage>  
-            </Field>
+              </ErrorMessage>
             <ErrorMessage name='lastname' />
           </Grid>
           <Grid>
@@ -148,7 +153,7 @@ const muiForm = () => {
               <ErrorMessage name="comments" component={TextError} />
             </Grid>
             <Grid>
-              <Field id="address" name="address">
+              <FastField id="address" name="address" label="address">
                 {
                   (props) => {
                     const {field, form, meta} = props
@@ -161,7 +166,7 @@ const muiForm = () => {
                     )
                   }
                 }
-              </Field>
+              </FastField>
             </Grid>
             <Grid>
               <Field
@@ -181,7 +186,7 @@ const muiForm = () => {
               <FieldArray name="phoneNbers">
                 {
                   fieldArrayProps => {
-                    console.log("fieldArrayProps", fieldArrayProps)
+                    // console.log("fieldArrayProps", fieldArrayProps)
                     const { push, remove, form } = fieldArrayProps
                     const { values } = form
                     const { phoneNbers} = values
