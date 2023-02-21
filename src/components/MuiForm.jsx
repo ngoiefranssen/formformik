@@ -91,10 +91,8 @@ const muiForm = () => {
             formik => {
               return(
                 <Form
-                  sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
-                  // noValidate
+                  sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
                   autoComplete="off"
-                  // sx={{  }}
                 >
                   <Grid>
                     <Field
@@ -221,7 +219,33 @@ const muiForm = () => {
                     }
                   </FieldArray>
                   </Grid>            
-                  <Button variant='contained' type='submit' padding="30px">Register</Button>
+                  <Button
+                    type='submit'
+                    onClick={ () => formik.validateField('comments')}
+                  >
+                    Validete comments
+                  </Button>
+                  <Button
+                    type='submit'
+                    onClick={ () => formik.validateForm()}
+                  >
+                    Validete all
+                  </Button>
+                  <Button
+                    type='submit'
+                    onClick={ () => formik.setFieldTouched('comments')}
+                  >
+                    Visit comments
+                  </Button>
+                  <Button
+                    variant='contained'
+                    color='success'
+                    type='submit'
+                    onClick={ () => formik.setTouched()}
+                  >
+                    Visit fields
+                  </Button>
+                  <Button variant='contained' type='submit'>Register</Button>
                 </Form>
               )
             }
